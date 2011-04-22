@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/mikehoward/use_tinymce"
   s.summary = "UseTinymce - Yet Another tinyMCE integrations gem for Rails 3"
   s.description = s.summary
-  s.files = Dir["{lib,test,assets}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
+  s.files = Dir["{lib,test}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"] + ["assets/*.zip"]
   s.version = "0.0.1"
 end

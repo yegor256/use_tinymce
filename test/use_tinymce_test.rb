@@ -2,7 +2,11 @@ $LOAD_PATH << File.expand_path("../../lib",  __FILE__)
 require 'test/unit'
 require 'use_tinymce'
 
+Rails = true
+puts Object.constants.grep /^Ra/
+
 class UseTinymceTest < Test::Unit::TestCase
+  
   @@helper_args = nil
   # add refute methods for ruby 1.8.7
   if !self.instance_methods.include? :refute_respond_to
@@ -30,8 +34,9 @@ class UseTinymceTest < Test::Unit::TestCase
   include UseTinymce
 
   def test_methods_defined
-    assert self.methods.include?(:use_tinymce?), "#{self} has public method :use_tinymce?"
-    assert self.class.methods.include?(:use_tinymce), "#{self.class} has method :use_tinymce"
+    assert respond_to?(:use_tinymce?), "#{self} has public method :use_tinymce?"
+    assert respond_to?(:use_tinymce_link), "#{self} has public method :use_tinymce_link" if defined? Rails
+    assert self.class.respond_to?(:use_tinymce), "#{self.class} has method :use_tinymce"
   end
 
   def test_class_instance_variable_initialized

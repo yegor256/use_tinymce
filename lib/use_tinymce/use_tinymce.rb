@@ -9,14 +9,15 @@ module UseTinymce
   end
 
   def self.included(mod)
-    mod.send(:helper_method, :use_tinymce?)
-
     mod.instance_variable_set("@use_tinymce", nil)
 
     def mod.use_tinymce(*actions)
       @use_tinymce = actions.map { |x| x.to_sym  }
     end
-  rescue Exception => e
-    puts "calling 'helper_method :use_tinymce?' failed: #{e}"
+
+    begin
+      mod.send(:helper_method, :use_tinymce?, :use_tinymce_link)
+    rescue Exception => e
+    end
   end
 end
