@@ -9,7 +9,6 @@ JAVASCRIPT_ROOT = File.join(Rails.root, 'public', 'javascripts')
 # puts "JAVASCRIPT_ROOT: #{JAVASCRIPT_ROOT}"
 
 namespace :use_tinymce do
-  desc "Install tinymce w/o initialization script"
   task :install_tinymce do
     FileUtils.cp_r File.join(ASSETS_ROOT, 'tinymce'), JAVASCRIPT_ROOT
   end

@@ -31,8 +31,18 @@ If you want or need finer control, use `use_tinymce?` and write your own conditi
 the `head` element of your page. It returns `true` if `action` was set by a previous
 call to `use_tinymce` [or if you included `use_tinymce :all` in your controller]
 
-One rake task:
+Two rake tasks:
 
-`rake use_tinymce` copies the contents of the `assets` directory to your rails public/javascript
-directory. [well, it doesn't copy an `zip` files]
+Both copy the contents of the `assets/tinymce` directory to your rails
+`public/javascripts` directory. The both also copy a TinyMCE initialization
+script to `public/javascripts/use_tinymce_init.js`
 
+This initialization scripts are copied literally from the TinyMCE website
+["For Dummies" page](http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22) 
+(that is: http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22)
+
+`rake use_tinymce:install_advanced` copies `assets/use_tinymce_ini_advanced.js` -
+which provides all the full blown features.
+
+`rake use_tinymce:install_simple` copies `assets/use_tinymce_ini_simple.js` -
+copies the bare bones version.
