@@ -1,14 +1,19 @@
 require 'rake'
+require 'fileutils'
+require 'zlib'
 
 # snarf gemspec and set version
 x = eval File.new('use_tinymce.gemspec').read
 use_tinymce_version = x.version.to_s
+tinymce_version = Dir.new('./assets/').map { |x| $1 if x =~ /tinymce_(.*).zip/ }.select {|x| x }.max
+tinymce_zip = "tinymce_#{tinymce_version}.zip"
+tinymce_tgz = "tinymce_#{tinymce_version}.tgz"
 
 task :default => :test
 
 desc "Run ManageMeta unit tests"
 task :test do
-  require './test/use_tinymce_test'
+  require './test/use_tinymce_base_test'
 end
 
 desc "run rdoc to create doc"

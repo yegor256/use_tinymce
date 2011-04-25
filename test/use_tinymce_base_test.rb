@@ -2,9 +2,6 @@ $LOAD_PATH << File.expand_path("../../lib",  __FILE__)
 require 'test/unit'
 require 'use_tinymce'
 
-Rails = true
-puts Object.constants.grep /^Ra/
-
 class UseTinymceTest < Test::Unit::TestCase
   
   @@helper_args = nil
@@ -31,11 +28,10 @@ class UseTinymceTest < Test::Unit::TestCase
     # params = nil
   end
 
-  include UseTinymce
+  include UseTinymce::Base
 
   def test_methods_defined
     assert respond_to?(:use_tinymce?), "#{self} has public method :use_tinymce?"
-    assert respond_to?(:use_tinymce_link), "#{self} has public method :use_tinymce_link" if defined? Rails
     assert self.class.respond_to?(:use_tinymce), "#{self.class} has method :use_tinymce"
   end
 
