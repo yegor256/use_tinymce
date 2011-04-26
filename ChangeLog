@@ -1,0 +1,7 @@
+2011-04-26 Mike Howard <mike@clove.com>
+
+* Rakefile - bugs in some of the strings which interpolated the variables gem_name & gem_version
+
+* lib/use_tinymce/use_tinymce.rb (use_tinymce_link): added params conditional
+
+* use_tinymce.gemspec: bumped version to 0.0.2
