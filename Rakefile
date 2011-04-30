@@ -1,6 +1,4 @@
 require 'rake'
-require 'fileutils'
-require 'zlib'
 
 gem_name = 'use_tinymce'
 
@@ -45,6 +43,6 @@ task :git_push  do
 end
 
 desc "push to rubygems"
-task :gem_psh => :gem do
+task :gem_push => :gem do
   system "gem push #{gem_name}-#{gem_version}.gem"
 end

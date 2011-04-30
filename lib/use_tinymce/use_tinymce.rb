@@ -26,8 +26,8 @@ module UseTinymce
   if defined? Rails
     module Link
       def use_tinymce_link
-        javascript_include_tag 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' \
-            if defined? params && use_tinymce?(params[:action])
+        javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' ) \
+            if defined?(params) && use_tinymce?(params[:action])
       end
     end
   end

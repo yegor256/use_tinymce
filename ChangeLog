@@ -1,4 +1,17 @@
+2011-04-30 Mike Howard <mike@clove.com>
+
+* version 0.0.3
+
+* lib/use_tinymce/use_tinymce.rb (use_tinymce_link): bug - conditioning wasn't working because
+    defined? needed some parentheses to bind arg properly
+
 2011-04-26 Mike Howard <mike@clove.com>
+
+* Rakefile: corrected spelling of gem_push
+
+2011-04-26 Mike Howard <mike@clove.com>
+
+* version 0.0.2
 
 * Rakefile - bugs in some of the strings which interpolated the variables gem_name & gem_version
 
