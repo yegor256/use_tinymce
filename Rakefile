@@ -32,9 +32,11 @@ task :commit do
   system "git commit -m \"checkin version #{gem_version}: ${MSG}\""
 end
 
-desc "commit changes and tag as #{gem_version} - add Env Var MSG to add commit message"
+desc "commit changes and tag as #{gem_version} - add Env Var MSG to add tag message"
 task :tag => :commit do
-  system "git tag #{gem_version}"
+  tag_message = "version #{gem_version}"
+  tag_message += ENV['MSG'] if ENV.keys.include? 'MSG'
+  system "git tag #{gem_version} -m '#{tag_message}'"
 end
 
 desc "push to github"

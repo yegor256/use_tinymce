@@ -61,6 +61,9 @@ class UseTinymceTest < Test::Unit::TestCase
     assert use_tinymce?(:edit), "use_tinymce? true when action => :edit"
     assert use_tinymce?(:new), "use_tinymce? true when action => :new"
     refute use_tinymce?(:index), "use_tinymce? false when action => :index"
+    assert use_tinymce?('edit'), "use_tinymce? true when action => 'edit'"
+    assert use_tinymce?('new'), "use_tinymce? true when action => 'new'"
+    refute use_tinymce?('index'), "use_tinymce? false when action => 'index'"
   end
 
   # test 'helper method called'

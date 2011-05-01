@@ -1,3 +1,14 @@
+2011-05-01 Mike Howard <mike@clove.com>
+
+* version 0.0.4
+
+* lib/use_tinymce/use_tinymce.rb (use_tinymce?): force all keys in class instance variables to
+    be symbols and convert all test strings to symbols (maybe I've finally gotten it right)
+* test/use_tinymce_base_test.rb (test_use_tinymce_checks_params): added tests of use_tinymce?
+    which use strings as arg
+
+* Rakefile - added provision to pass messages into commit and tag actions
+
 2011-04-30 Mike Howard <mike@clove.com>
 
 * version 0.0.3
