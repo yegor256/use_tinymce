@@ -26,13 +26,13 @@ task :gem do
   system "gem build #{gem_name}.gemspec"
 end
 
-desc "commit changes"
+desc "commit changes - use Env Var MSG to add comment"
 task :commit do
   system 'git add .'
-  system "git commit -m \"checkin version #{gem_version}\""
+  system "git commit -m \"checkin version #{gem_version}: ${MSG}\""
 end
 
-desc "commit changes and tag as #{gem_version}"
+desc "commit changes and tag as #{gem_version} - add Env Var MSG to add commit message"
 task :tag => :commit do
   system "git tag #{gem_version}"
 end

@@ -4,8 +4,8 @@ module UseTinymce
       @use_tinymce = self.class.instance_variable_get("@use_tinymce")
       return false unless @use_tinymce
       return true if @use_tinymce.include? :all
-      return @use_tinymce.include?(action) unless action.nil?
-      return @use_tinymce.include?(params[:action]) if defined? params
+      return @use_tinymce.include?(action.to_sym) unless action.nil?
+      return @use_tinymce.include?(params[:action].to_sym) if defined? params
       false
     end
 
