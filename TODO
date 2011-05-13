@@ -1,2 +1,4 @@
 TODO add my upload plugin as an optional plugin
 TODO write Rails AJAX for my plugin
+TODO add tinyMCE jquery stuff
+TODO rewrite rake task as generator with options --[no-]jquery --simple --advanced
