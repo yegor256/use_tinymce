@@ -1,6 +1,8 @@
 // This is taken directly from http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22
 tinyMCE.init({
-        mode : "textareas",
+        mode : "textareas",              // Rails 3.0
+        // mode: "sepecific_textareas",  // Rails 3.1
+        // editor_select: "tinymce",     // Rails 3.1
         theme : "advanced",
         plugins : "emotions,spellchecker,advhr,insertdatetime,preview", 
                 

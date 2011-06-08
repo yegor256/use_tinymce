@@ -25,9 +25,19 @@ module UseTinymce
   
   if defined? Rails
     module Link
-      def use_tinymce_link
-        javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' ) \
-            if defined?(params) && use_tinymce?(params[:action])
+      case
+      when Rails.version =~ /^3.0/
+        def use_tinymce_link
+          javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' ) \
+              if defined?(params) && use_tinymce?(params[:action])
+        end
+      when Rails.version =~ /^3.1/
+        def use_tinymce_link
+          # do nothing. Rails 3.1.x pulls in all the code in /app/assets/javascripts if you
+          # use javascript_include_tag "application"
+        end
+      else
+        logger.debug("use_tinymce has not been tested for this version of Rails: #{Rails.version}")
       end
     end
   end
