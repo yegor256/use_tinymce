@@ -117,6 +117,10 @@ you want to apply TinyMCE to.
 
 ## Three rake tasks:
 
+**NOTE:** Rails 3.1 automatically adds a rake task 'use_tinymce_engine:install:migrations'.
+It doesn't do anything 'cause there aren't any migrations for 'use_tinymce'.
+Ignore it.
+
 Both copy the contents of the `assets/TinyMCE` directory to your rails
 `public/javascripts` directory. They both also copy a TinyMCE initialization
 script to `public/javascripts/use_tinymce_init.js`
