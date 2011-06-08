@@ -28,6 +28,7 @@ module UseTinymce
       case
       when Rails.version =~ /^3.0/
         def use_tinymce_link
+          # javascript_include_tag( 'tinymce/jscripts/tiny_mce/jquery.tiny_mce', 'use_tinymce_init' ) \
           javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' ) \
               if defined?(params) && use_tinymce?(params[:action])
         end

@@ -57,23 +57,23 @@ namespace :use_tinymce do
     File.delete(init_file_path) if File.exists? init_file_path
     
     tinymce_root_path = File.join(JAVASCRIPT_ROOT, 'tinymce')
-    rmdir_tree if File.exists? tinymce_root_path
+    rmdir_tree(tinymce_root_path) if File.exists? tinymce_root_path
   end
-  task :install_tinymce_vanilla => :pre_install do
-    FileUtils.cp_r File.join(ASSETS_ROOT, 'tinymce_vanilla', 'tinymce'), JAVASCRIPT_ROOT
+  task :install_tinymce_advanced => :pre_install do
+    FileUtils.cp_r File.join(ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), JAVASCRIPT_ROOT
   end
   task :install_tinymce_jquery => :pre_install do
     FileUtils.cp_r File.join(ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), JAVASCRIPT_ROOT
   end
 
   desc "Install tinymce with 'simple' initialization"
-  task :install_simple => :install_tinymce_vanilla do
+  task :install_simple => :install_tinymce_advanced do
     copy_init_script('use_tinymce_init_simple.js')
     # FileUtils.cp File.join(ASSETS_ROOT, 'use_tinymce_init_simple.js'), File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
   end
 
   desc "Install tinymce with 'advanced' initialization"
-  task :install_vanilla => :install_tinymce_vanilla do
+  task :install_advanced => :install_tinymce_advanced do
     copy_init_script('use_tinymce_init_advanced.js')
     # FileUtils.cp File.join(ASSETS_ROOT, 'use_tinymce_init_advanced.js'), File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
   end

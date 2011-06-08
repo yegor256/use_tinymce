@@ -15,9 +15,9 @@ What's Provided
 
 ## Integration with a Prototype based site
 
-This brings in the 'vanilla' version of TinyMCE.
+This brings in the 'advanced' version of TinyMCE.
 
-Install using `rake use_tinymce:install_vanilla` to get the 'advanced' configuration
+Install using `rake use_tinymce:install_advanced` to get the 'advanced' configuration
 initialization file.
 
 Or, you can install using `rake use_tinymce:install_simple` to use the 'simple' configuration.
@@ -72,7 +72,7 @@ by a previous call to `use_tinymce` [or if you included `use_tinymce :all` in yo
 1. You will need to install *TinyMCE* in your /public/javascript directory.
 Do that by running one of these rake tasks:
   * `rake use_tinymce:install_simple`
-  * `rake use_tinymce:install_vanilla`
+  * `rake use_tinymce:install_advanced`
   * `rake use_tinymce:install_jquery`
   
   If you don't need much and aren't familiar with *TinyMCE*, then `rake use_tinymce:install_simple`
@@ -110,7 +110,7 @@ and can't be used.
 1. You will need to install *TinyMCE* in your /public/javascript directory.
 Do that by running one of these rake tasks:
   * `rake use_tinymce:install_simple`
-  * `rake use_tinymce:install_vanilla`
+  * `rake use_tinymce:install_advanced`
   * `rake use_tinymce:install_jquery`
 2. Add the `tinymce` class to all the `textarea` elements in all views and partials
 you want to apply TinyMCE to.
@@ -129,7 +129,7 @@ This initialization scripts are copied literally from the TinyMCE website
 ["For Dummies" page](http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22) 
 - that is: *http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22*
 
-`rake use_tinymce:install_vanilla` copies `assets/use_tinymce_init_advanced.js` -
+`rake use_tinymce:install_advanced` copies `assets/use_tinymce_init_advanced.js` -
 which provides all the full blown features.
 
 `rake use_tinymce:install_simple` copies `assets/use_tinymce_ini_simple.js` -
@@ -160,7 +160,7 @@ website. You *should* be able to upgrade your *TinyMCE* if you want by doing the
 same thing and then unpacking the zip file in `/public/javascript`
 
 **WARNING:** Rails 3.1 uses sprockets which has a problem compiling non-Unicoded characters.
-the vanilla *TinyMCE* contains some directly encoded characters in the *spellchecker_word_separator_chars*
+the advanced *TinyMCE* contains some directly encoded characters in the *spellchecker_word_separator_chars*
 variable in the spellchecking plugin. I've modified the code to convert them to Unicode \U...
 representations. If you upgrade *TinyMCE* and run with Rails 3.1 + you will probably have
 to do the same.
