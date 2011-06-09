@@ -91,7 +91,26 @@ That's it.
 
 ## Rails 3.1 Integration
 
-Rails 3.1 handles Javascript assets differently.
+Rails 3.1 adds the 'asset pipeline' by default. This uses the 'sprocket' gem
+to combine javascript and css into two files as well as adding direct support
+of Coffeescript and SASS.
+
+It also mucks up TinyMCE because TinyMCE - by default - dynamically loads it's
+plugins as they are needed. While the TinyMCE implementation is quite nice,
+it and the asset pipeline mess each other up.
+
+There are a lot of ways to resolve this - but I've chosen a simple, brute force
+approach: I've concatenated all of the TinyMCE files together into a single,
+minified file which we load in.
+
+There are several downsides related to TinyMCE plugins:
+
+1. I've included all the plugins that TinyMCE ships with. This makes them
+all available for customization using the 'advanced' menu.
+2. The file size is larger than needed in many cases. I think using the pipeline
+justifies this: we only have to download once and only for the first request
+from the site.
+3. The file would need to be rebuilt if you want to add any plugins.
 
 The default behavior is to compile all of the scripts into a single file which
 is then uploaded. I've chosen to take the simple approach and use the method
