@@ -7135,7 +7135,13 @@ tinymce.html.Writer = function(settings) {
 			loading = 0,
 			undefined;
 
+var show_alert = true;
 		function loadScript(url, callback) {
+if (show_alert) {
+  alert('7139: loadScript: url: ' + url + "\nbaseURL: " + tinymce.baseURL
+     + "\nbaseURI: " + tinymce.baseURI  + "\n documentBaseURL: " + tinymce.documentBaseURL);
+  show_alert = false;
+}
 			var t = this, dom = tinymce.DOM, elm, uri, loc, id;
 
 			// Execute callback when script is loaded

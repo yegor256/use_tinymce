@@ -28,10 +28,19 @@ module UseTinymce
       case
       when Rails.version =~ /^3.0/
         def use_tinymce_link
-          # javascript_include_tag( 'tinymce/jscripts/tiny_mce/jquery.tiny_mce', 'use_tinymce_init' ) \
-          javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' ) \
-              if defined?(params) && use_tinymce?(params[:action])
+          if defined?(params) && use_tinymce?(params[:action])
+            # javascript_include_tag( 'tinymce/jscripts/tiny_mce/jquery.tiny_mce', 'use_tinymce_init' )
+jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
+puts "Path to jquery.tinymce.js: #{jq_path}"
+puts "Path Exists? #{File.exists?(jq_path)}"
+            if File.exists? jq_path
+              javascript_include_tag( 'tinymce/jscripts/tiny_mce/jquery.tinymce', 'use_tinymce_init' )
+            else
+              javascript_include_tag( 'tinymce/jscripts/tiny_mce/tiny_mce', 'use_tinymce_init' )
+            end
+          end
         end
+
       when Rails.version =~ /^3.1/
         def use_tinymce_link
           # do nothing. Rails 3.1.x pulls in all the code in /app/assets/javascripts if you

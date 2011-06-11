@@ -1,9 +1,8 @@
 // copied from the examples directory for the jQuery version of tinyMCE
 $().ready(function() {
-	$('textarea').tinymce({            // Rails 3.0
-  $('textarea.tinymce').tinymce({    // Rails 3.1
+	$({jquery_selector}).tinymce({
 		// Location of TinyMCE script
-		script_url : '../jscripts/tiny_mce/tiny_mce.js',
+		script_url : '/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js',
 
 		// General options
 		theme : "advanced",
