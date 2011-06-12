@@ -1,0 +1,19 @@
+# Issues
+
+## Sprockets
+
+1. Add a require_tinymce method (named `process_require_tinymce_directive`) which will:
+    1. pull in editor_plugin_(src)?.js depending on Rails.env ['development', 'test', 'production']
+    2. add compressor marking code to end of application.js
+
+    From `tiny_mce_gzip.php` - the 2.0.4 version. Look at it for more ideas.
+    'tinymce.each("' . implode(',', $files) . '".split(","),function(f){tinymce.ScriptLoader.markDone(tinyMCE.baseURL+"/"+f+".js");});';
+    
+2. design method to deal with plugin & theme css and html. Possibilities include:
+    1. extend sprockets to create multiple assets
+    2. move all of that stuff to /public/?
+
+## TinyMCE
+
+1. fix or track down `document_base_url` bug
+2. fix 8bit character data problem in the spellchecker plugin
