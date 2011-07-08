@@ -11,7 +11,9 @@ class UseTinyMCE
     MODE_STRING = 'mode : "textareas"'
     JQUERY_SELECTOR = '"textarea"'
   when Rails.version =~ /^3.1/ then;
-    JAVASCRIPT_ROOT = File.join(Rails.root, 'app', 'assets', 'javascripts')
+    # MSH - asset pipeline gets in way, so put it in public/javascripts
+    # JAVASCRIPT_ROOT = File.join(Rails.root, 'app', 'assets', 'javascripts')
+    JAVASCRIPT_ROOT = File.join(Rails.root, 'public', 'javascripts')
     RAILS_REGX = Regexp.new('//\s+Rails 3.1')
     MODE_STRING = [ 'mode: "specific_textareas"', '        editor_selector: "tinymce"' ].join(",\n")
     JQUERY_SELECTOR = '"textarea.tinymce"'
