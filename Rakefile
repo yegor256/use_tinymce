@@ -11,7 +11,7 @@ gem_tgz = "#{gem_name}_#{gem_version}.tgz"
 
 task :default => :test
 
-desc "Run ManageMeta unit tests"
+desc "Run use_tinymce unit tests"
 task :test do
   require "./test/#{gem_name}_base_test"
 end
