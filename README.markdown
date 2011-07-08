@@ -2,11 +2,12 @@ UseTinyMCE
 ==========
 
 **UseTinyMCE** is yet another (as if we needed another) hack for including
-TinyMCE in a Rails 3 app.
+TinyMCE in a Rails 3.0 or 3.1 app.
 
 It differs from the others that I looked at on rubygems in that:
 
-1. It works with Rails 3.0 [only one of the ones I tried actually did]
+1. It works with Rails [3.0](#rails_30_integration) & [3.1.0.rc4](#rails_31_integration),
+details below
 2. It's minimal. It does not provide any juicy Rails style configuration for
 TinyMCE. You just use the config stuff which comes with TinyMCE - in javascript.
 
@@ -99,30 +100,13 @@ It also mucks up TinyMCE because TinyMCE - by default - dynamically loads it's
 plugins as they are needed. While the TinyMCE implementation is quite nice,
 it and the asset pipeline mess each other up.
 
+[It actually gets worse: TinyMCE has HTML and CSS files scattered throughout
+it's `plugins` directories which are loaded dynamically as plugins pop up windows.]
+
 There are a lot of ways to resolve this - but I've chosen a simple, brute force
-approach: I've concatenated all of the TinyMCE files together into a single,
-minified file which we load in.
-
-There are several downsides related to TinyMCE plugins:
-
-1. I've included all the plugins that TinyMCE ships with. This makes them
-all available for customization using the 'advanced' menu.
-2. The file size is larger than needed in many cases. I think using the pipeline
-justifies this: we only have to download once and only for the first request
-from the site.
-3. The file would need to be rebuilt if you want to add any plugins.
-
-The default behavior is to compile all of the scripts into a single file which
-is then uploaded. I've chosen to take the simple approach and use the method
-recommended by Moxicode: add a 'tinymce' class to all `textarea` elements
-you want to use TinyMCE on.
-
-So, with Rails 3.1, you will have a single `javascript_include_tag "application"`
-and will add `class="tinymce"` to all `textarea` elements in all views and partials
-that you want to apply TinyMCE to.
-
-The methods `use_tinymce`, `use_tinymce_link`, and `use_tinymce?` are not defined
-and can't be used.
+approach: I stuff the TinyMCE distribution and my javascript glue in `public/javascripts`,
+just like it is using Rails 3.0.x. Then I tried it with the asset pipeline enabled
+and - drum role - it works.
 
 ### Step by Step Configuration
 
@@ -134,11 +118,14 @@ Do that by running one of these rake tasks:
 2. Add the `tinymce` class to all the `textarea` elements in all views and partials
 you want to apply TinyMCE to.
 
-## Three rake tasks:
+## Four rake tasks:
 
 **NOTE:** Rails 3.1 automatically adds a rake task 'use_tinymce_engine:install:migrations'.
-It doesn't do anything 'cause there aren't any migrations for 'use_tinymce'.
+It doesn't do anything because there aren't any migrations for 'use_tinymce'.
 Ignore it.
+
+**NOTE** `assets` here refers to the `assets` directory in the `use_tinymce`
+gem - **not** the Rails 3.1 asset pipeline directory.
 
 Both copy the contents of the `assets/TinyMCE` directory to your rails
 `public/javascripts` directory. They both also copy a TinyMCE initialization
@@ -159,6 +146,9 @@ The jQuery version was copied from an example script and then slightly modified
 
 `rake use_tinymce:install_jquery` copies `assets/use_tinymce_init_jquery.js` -
 which attaches an 'advanced' TinyMCE configuration to textareas.
+
+`rake use_tinymce:uninstall` removes use_tinymce_init.js and the TinyMCE
+directory from `public/javascripts`
 
 Relocating *TinyMCE* or Something Else
 ==================
