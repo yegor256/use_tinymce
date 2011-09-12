@@ -78,24 +78,21 @@ namespace :use_tinymce do
     FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
   end
   task :install_tinymce_jquery => :uninstall do
-    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
   end
 
   desc "Install tinymce with 'simple' initialization"
   task :install_simple => :install_tinymce_advanced do
     UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_simple.js')
-    # FileUtils.cp File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'use_tinymce_init_simple.js'), File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
   end
 
   desc "Install tinymce with 'advanced' initialization"
   task :install_advanced => :install_tinymce_advanced do
     UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_advanced.js')
-    # FileUtils.cp File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'use_tinymce_init_advanced.js'), File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
   end
 
   desc "Install tinymce jquery plugin with 'advanced' initialization"
   task :install_jquery => :install_tinymce_jquery do
     UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
-    # FileUtils.cp File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'use_tinymce_init_jquery.js'), File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
   end
 end
