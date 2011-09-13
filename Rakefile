@@ -13,12 +13,7 @@ task :default => :test
 
 desc "Run use_tinymce unit tests"
 task :test do
-  require "./test/#{gem_name}_base_test"
-end
-
-desc "run rdoc to create doc"
-task :doc do
-  system 'rdoc'
+  require "./test/test_#{gem_name}_base"
 end
 
 desc "build gem"
@@ -28,24 +23,6 @@ task :gem do
     system "cp #{gem_name}-#{gem_version}.gem ~/Rails/GemCache/gems/"
     system "(cd ~/Rails/GemCache ; gem generate_index -d . )"
   end
-end
-
-desc "commit changes - use Env Var MSG to add comment"
-task :commit do
-  system 'git add .'
-  system "git commit -m \"checkin version #{gem_version}: ${MSG}\""
-end
-
-desc "commit changes and tag as #{gem_version} - add Env Var MSG to add tag message"
-task :tag => :commit do
-  tag_message = "version #{gem_version}"
-  tag_message += ENV['MSG'] if ENV.keys.include? 'MSG'
-  system "git tag #{gem_version} -m '#{tag_message}'"
-end
-
-desc "push to github"
-task :git_push  do
-  system 'git push'
 end
 
 desc "push to rubygems"
