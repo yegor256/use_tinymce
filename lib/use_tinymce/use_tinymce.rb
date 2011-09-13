@@ -30,7 +30,7 @@ module UseTinymce
           if defined?(params) && use_tinymce?(params[:action])
             jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
             if File.exists? jq_path
-              javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/jquery.tinymce', '/javascripts/use_tinymce_init' )
+              javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js', '/javascripts/use_tinymce_init' )
             else
               javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/tiny_mce', '/javascripts/use_tinymce_init' )
             end

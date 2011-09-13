@@ -20,6 +20,7 @@ module UseTinyMCE
     # MSH - asset pipeline gets in way, so put it in public/javascripts
     # JAVASCRIPT_ROOT = File.join(Rails.root, 'app', 'assets', 'javascripts')
     JAVASCRIPT_ROOT = File.join(Rails.root, 'public', 'javascripts')
+    TINYMCE_TARGET_DIR = File.join(JAVASCRIPT_ROOT, 'tinymce')
     # set the TinyMCE selection mode: this controls which textarea elements use TinyMCE
     #  mode: specific_textareas is essentially the same as mode:textareas
     #  editor_selector: foo defines a class which MUST be present in a textarea element IF
@@ -35,7 +36,8 @@ module UseTinyMCE
     # This MODE_STRING will configure to NOT USE TinyMCE in textareas unless the 'editor_selector'
     #  class is present.
     # MODE_STRING = [ 'mode: "specific_textareas"', '        editor_selector: "tinymce"' ].join(",\n")
-    JQUERY_SELECTOR = '"textarea.tinymce"'
+    # JQUERY_SELECTOR = '"textarea.tinymce"'
+    JQUERY_SELECTOR = '"textarea"'
 
     def self.copy_init_script(source)
       source_path = File.join(ASSETS_ROOT, source)
@@ -75,10 +77,10 @@ namespace :use_tinymce do
     UseTinyMCE::RakeSupport::rmdir_tree(tinymce_root_path) if File.exists? tinymce_root_path
   end
   task :install_tinymce_advanced => :uninstall do
-    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), UseTinyMCE::RakeSupport::TINYMCE_TARGET_DIR
   end
   task :install_tinymce_jquery => :uninstall do
-    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+    FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::TINYMCE_TARGET_DIR
   end
 
   desc "Install tinymce with 'simple' initialization"

@@ -24,6 +24,10 @@ end
 desc "build gem"
 task :gem do
   system "gem build #{gem_name}.gemspec"
+  if 'mike.local' == IO.popen('hostname').read.chomp
+    system "cp #{gem_name}-#{gem_version}.gem ~/Rails/GemCache/gems/"
+    system "(cd ~/Rails/GemCache ; gem generate_index -d . )"
+  end
 end
 
 desc "commit changes - use Env Var MSG to add comment"
