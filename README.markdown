@@ -1,4 +1,4 @@
-UseTinyMCE - 0.0.11
+UseTinyMCE - 0.0.12
 ==========
 
 **UseTinyMCE** is yet another (as if we needed another) hack for including
@@ -13,6 +13,9 @@ It differs from the others that I looked at on rubygems in that:
 details below
 2. It's minimal. It does not provide any juicy Rails style configuration for
 TinyMCE. You just use the config stuff which comes with TinyMCE - in javascript.
+3. I only use Ruby 1.9.2 & depend on others to find and patch bugs in 1.8.x.
+Version 0.0.12 contains a patch by github://janne to correct the syntax of the rakefile
+so that it works with the Regexp engine in 1.8.x
 
 ## Rails 3.0 & 3.1 Integration
 

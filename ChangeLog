@@ -1,3 +1,12 @@
+2011-09-29 Mike Howard <mike@clove.com>
+
+* version 0.0.12
+
+* lib/tasks/use_tinymce.rake: patch from https://github.com/janne: escaped curly braces in
+    rakefile for ruby 1.8 compatibility (and just plain correctness)
+
+* versions 0.0.6 thru 0.0.11 - various changes to make it work with Rails 3.1.
+
 2011-05-02 Mike Howard <mike@clove.com>
 
 * version 0.0.5
