@@ -40,7 +40,7 @@ module UseTinyMCE
 
     def self.copy_init_script(source)
       source_path = File.join(ASSETS_ROOT, source)
-      source_text = File.new(source_path).read.sub(/{mode_string}/, MODE_STRING).sub(/{jquery_selector}/, JQUERY_SELECTOR)
+      source_text = File.new(source_path).read.sub(/\{mode_string\}/, MODE_STRING).sub(/\{jquery_selector\}/, JQUERY_SELECTOR)
 
       dest_path = File.join(JAVASCRIPT_ROOT, 'use_tinymce_init.js')
       mkdir_tree(JAVASCRIPT_ROOT)
