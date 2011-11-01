@@ -76,7 +76,6 @@ in which you want to run *TinyMCE*. `args` should be:
   * `:foo, :bar` - to enable *TinyMCE* only for views rendered by `foo` and `bar` actions
   [usually this is something like `use_tinymce :new, :edit`].
   
-
 3. Add `<%= use_tinymce_link %>` to the `HEAD` section of you application layout - for *at least*
 all pages which should use *TinyMCE*
 
