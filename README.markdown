@@ -50,24 +50,8 @@ Or read the TinyMCE code.
 **Note:** you should *not* have to 'require use_tinymce` anyplace. If you do, please let me know.
 
 1. You will need to install *TinyMCE* in your /public/javascript directory.
-Do that by running one of these rake tasks:
-
-  Rails 3.0:
-  
-  * `rake use_tinymce:install_jquery` - if you are using jQuery (Rails 3.1 default)
-  * `rake use_tinymce:install_simple` - if you are using Prototype (Rails 3.0 default)
-  * `rake use_tinymce:install_advanced` - if you are using Prototype (Rails 3.0 default)
-  
-  If you don't need much and aren't familiar with *TinyMCE*, then `rake use_tinymce:install_simple`
-  should be fine. The *advanced* version configures *TinyMCE* with many more features. Go to
-  the ["TinyMCE website for details"](http://tinymce.moxiecode.com/)
-  
-  Rails 3.1
-
-  * rake use_tinymce:install - installs the jQuery version of TinyMCE
-  
-  This creates an `advanced` editor. See the *TinyMCE* website for configuration information:
-  ["TinyMCE website for details"](http://tinymce.moxiecode.com/)
+Do that by running one of the rake tasks below. They are all in the `use_tinymce`
+namespace and depend on the version of Rails you are using. See below for details.
 
 2. Add `use_tinymce args` to all the controllers for views containing **textarea** fields
 in which you want to run *TinyMCE*. `args` should be:
@@ -83,6 +67,34 @@ all pages which should use *TinyMCE*
 set.
 
 That's it.
+
+### Rake Tasks
+
+Rails 3.0:
+
+* `rake use_tinymce:install_jquery` - if you are using jQuery (Rails 3.1 default)
+* `rake use_tinymce:install_simple` - if you are using Prototype (Rails 3.0 default)
+* `rake use_tinymce:install_advanced` - if you are using Prototype (Rails 3.0 default)
+* `rake use_tinymce:uninstall` - removes all trace of TinyMCE & the initialization file from
+your `/public/javascripts` directory. **WARNING:** this wipes out any customizations you have
+done to the `init_tinymce.js` file. **WARNING:** `uninstall` is *always* run prior to
+any of the `install` tasks.
+
+If you don't need much and aren't familiar with *TinyMCE*, then `rake use_tinymce:install_simple`
+should be fine. The *advanced* version configures *TinyMCE* with many more features. Go to
+the ["TinyMCE website for details"](http://tinymce.moxiecode.com/)
+
+Rails 3.1
+
+* rake use_tinymce:install - installs the jQuery version of TinyMCE
+* `rake use_tinymce:uninstall` - removes all trace of TinyMCE & the initialization file from
+your `/public/javascripts` directory.  **WARNING:** this wipes out any customizations you have
+done to the `init_tinymce.js` file. **WARNING:** `uninstall` is *always* run prior to
+the `install` task.
+
+This creates an `advanced` editor. See the *TinyMCE* website for configuration information:
+["TinyMCE website for details"](http://tinymce.moxiecode.com/)
+
 
 ## Supplied Methods
 
