@@ -47,6 +47,8 @@ Or read the TinyMCE code.
 
 ## Step by Step
 
+**Note:** you should *not* have to 'require use_tinymce` anyplace. If you do, please let me know.
+
 1. You will need to install *TinyMCE* in your /public/javascript directory.
 Do that by running one of these rake tasks:
 
@@ -69,13 +71,15 @@ Do that by running one of these rake tasks:
 
 2. Add `use_tinymce args` to all the controllers for views containing **textarea** fields
 in which you want to run *TinyMCE*. `args` should be:
+
   * `:all` - to enable *TinyMCE* for all actions
   * `:foo, :bar` - to enable *TinyMCE* only for views rendered by `foo` and `bar` actions
   [usually this is something like `use_tinymce :new, :edit`].
   
-  **Note:** you should *not* have to 'require use_tinymce` anyplace. If you do, please let me know.
+
 3. Add `<%= use_tinymce_link %>` to the `HEAD` section of you application layout - for *at least*
 all pages which should use *TinyMCE*
+
 4. (Optional) Edit `/public/javascript/use_tinymce_init.js` to customize your *TinyMCE* feature
 set.
 
