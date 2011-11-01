@@ -1,4 +1,4 @@
-UseTinyMCE - 0.0.12
+UseTinyMCE - 0.0.13.pre1
 ==========
 
 **UseTinyMCE** is yet another (as if we needed another) hack for including
