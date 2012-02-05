@@ -111,7 +111,7 @@ namespace :use_tinymce do
     task :install_jquery => :install_tinymce_jquery do
       UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
     end
-  when /^3.1/
+  when /^3.[12]/
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install => :uninstall do
       raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
