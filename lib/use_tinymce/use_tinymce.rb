@@ -25,7 +25,7 @@ module UseTinymce
   
   if defined? Rails
     module Link
-      if Rails.version =~ /^3.[01]/
+      if Rails.version =~ /^3.[012]/
         def use_tinymce_link
           if defined?(params) && use_tinymce?(params[:action])
             jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
@@ -37,7 +37,7 @@ module UseTinymce
           end
         end
       else
-        logger.debug("use_tinymce has not been tested for this version of Rails: #{Rails.version}")
+        raise RuntimeError.new("use_tinymce has not been tested for this version of Rails: #{Rails.version}")
       end
     end
   end

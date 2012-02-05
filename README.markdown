@@ -2,10 +2,11 @@ UseTinyMCE - 0.0.13.pre1
 ==========
 
 **UseTinyMCE** is yet another (as if we needed another) hack for including
-TinyMCE in a Rails 3.0 or 3.1 app.
+TinyMCE in a Rails 3.0, 3.1, or 3.2 app.
 
 **NOTE:** Rails 3.1.0 broke version 0.0.8. The current version has been tested
-on both Rails 3.1.0 & 3.0.10. All installations work properly.
+on Rails 3.1.0, 3.0.13 and (smoke tested) on Rails 3.2.1. All installations (seem to)
+work properly.
 
 It differs from the others that I looked at on rubygems in that:
 
