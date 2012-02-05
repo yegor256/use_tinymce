@@ -5,8 +5,8 @@ unless defined?(Rails)
   puts "This rake task only runs on Rails"
   exit
 end
-unless Rails.version =~ /^3.[01]/
-  puts "Don't know how to install on Rails Version #{Rails.version}"
+unless Rails.version =~ /^3.[012]/
+  puts "use_tinymce Error: Don't know how to install on Rails Version #{Rails.version}"
   exit
 end
 
@@ -111,7 +111,7 @@ namespace :use_tinymce do
     task :install_jquery => :install_tinymce_jquery do
       UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
     end
-  when /^3.[12]/
+  when /^3\.[12]/
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install => :uninstall do
       raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
@@ -119,7 +119,7 @@ namespace :use_tinymce do
       UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
     end
   else
-    puts "Don't know how to install in Rails #{Rails.version}"
+    puts "use_tinymce error: Don't know how to install in Rails #{Rails.version}"
     exit 1
   end
 end
