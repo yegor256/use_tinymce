@@ -25,7 +25,7 @@ module UseTinymce
   
   if defined? Rails
     module Link
-      if Rails.version =~ /^3.[012]/
+      if Rails.version =~ /^3.[012]/ || Rails.version =~ /^4.[0]/
         def use_tinymce_link
           if defined?(params) && use_tinymce?(params[:action])
             jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')

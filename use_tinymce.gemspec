@@ -1,6 +1,7 @@
 # Provide a simple gemspec so you can easily use your enginex
 # project in your rails apps through git.
 tinymce_version = Dir.new('./assets/').map { |x| $1 if x =~ /tinymce_(.*).zip/ }.select {|x| x }.max
+require File.join(File.expand_path('.'), 'lib', 'use_tinymce', 'version.rb')
 
 Gem::Specification.new do |s|
   s.name = "use_tinymce"
@@ -12,5 +13,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{lib,test}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"] \
     + ["assets/use_tinymce_init_simple.js", "assets/use_tinymce_init_advanced.js", "assets/use_tinymce_init_jquery.js"] \
     + Dir['assets/tinymce*/**/*']
-  s.version = "0.0.15"
+  s.version = VERSION
 end

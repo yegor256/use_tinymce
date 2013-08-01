@@ -1,4 +1,5 @@
 require 'rake'
+require "./lib/use_tinymce/version.rb"
 
 gem_name = 'use_tinymce'
 
@@ -16,8 +17,13 @@ task :test do
   require "./test/test_#{gem_name}_base"
 end
 
+desc "create README.markdown from README.markdown.in by replacing @@FOO@@ with FOO Value"
+file "README.markdown" => ["README.markdown.in"] do
+  system "sed -e 's/@@VERSION@@/#{VERSION}/g' <'README.markdown.in' >'README.markdown'"
+end
+
 desc "build gem"
-task :gem do
+task :gem => ["README.markdown"] do
   system "gem build #{gem_name}.gemspec"
   if 'mike.local' == IO.popen('hostname').read.chomp
     system "cp #{gem_name}-#{gem_version}.gem ~/Rails/GemCache/gems/"
@@ -26,6 +32,10 @@ task :gem do
 end
 
 desc "push to rubygems"
-task :gem_push => :gem do
-  system "gem push #{gem_name}-#{gem_version}.gem"
+task :gem_push => [:gem] do
+  unless VERSION =~ /pre/ then
+    system "gem push #{gem_name}-#{gem_version}.gem"
+  else
+    puts "Cannot push a pre version - test it you fool!!!!"
+  end
 end
