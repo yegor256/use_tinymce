@@ -28,12 +28,21 @@ module UseTinymce
       if Rails.version =~ /^3.[012]/ || Rails.version =~ /^4.[0]/
         def use_tinymce_link
           if defined?(params) && use_tinymce?(params[:action])
-            jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
-            if File.exists? jq_path
-              javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js', '/javascripts/use_tinymce_init' )
-            else
-              javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/tiny_mce', '/javascripts/use_tinymce_init' )
+            ret = ''
+            [['jscripts', 'tiny_mce', 'tiny_mce'], ['jscripts', 'tiny_mce', 'jquery.tinymce.js'], ['js', 'tinymce', 'jquery.tinymce.min.js']].each do |ar|
+              path_ar = [Rails.root, 'public', 'javascripts', 'tinymce'] + ar
+              if File.exists?( File.join(path_ar))
+                ret = javascript_include_tag('/javascripts/tinymce/' + ar.join('/'), '/javascripts/use_tinymce_init')
+              end
             end
+            # jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
+            # if File.exists? jq_path
+            #   javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js', '/javascripts/use_tinymce_init' )
+            # else
+            #   javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/tiny_mce', '/javascripts/use_tinymce_init' )
+            # end
+            puts ret
+            ret
           end
         end
       else

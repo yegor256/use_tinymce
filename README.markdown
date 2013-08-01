@@ -5,33 +5,32 @@ UseTinyMCE - 0.0.16.pre1
 TinyMCE in a Rails 3.0, 3.1, 3.2 or 4.0 app.
 
 **NOTE:** Rails 3.1.0 broke version 0.0.8. The current version has been tested
-on Rails 4.0.0. It should *work* on 3.0, 3.1 and 3.2 because "nothing there has been changed". Let me know if this is not true.
+on Rails 4.0.0. It *should* work on 3.0, 3.1 and 3.2 because "nothing there has been changed". Let me know if this is not true.
 
 This gem differs from the others that I looked at on rubygems in that:
 
-1. It works with Rails [3.0](#rails_30_integration) & [3.1.0](#rails_31_integration),
-details below
+1. It works with Rails [3.0](#rails_30_integration), [3.1 & 3.2](#rails_31_integration) and [4.0](#rails_40_integration) details below
 2. It's minimal. It does not provide any juicy Rails style configuration for
 TinyMCE. You just use the config stuff which comes with TinyMCE - in javascript.
-3. I only use Ruby 1.9.2 & depend on others to find and patch bugs in 1.8.x.
-Version 0.0.12 contains a patch by github://janne to correct the syntax of the rakefile
+3. I've moved on to Ruby 2.0, so I'm now depending on others to find and patch bugs in 1.9.x
+and 1.8.x. For example, version 0.0.12 contains a patch by github://janne to correct the syntax of the rakefile
 so that it works with the Regexp engine in 1.8.x
 
-## Rails 3.0 & 3.1 Integration
+## Rails Integration
 
-It's almost the same in both cases. See [Step By Step](#step_by_step) below.
+It's almost the same in all cases. See [Step By Step](#step_by_step) below.
 
 **Rails 3.0 Note:** Rails 3.0 defaults to `prototype` for javascript, so `use_tinymce`
 supports both *raw* TinyMCE (which works well with Prototype) and the *jquery* version,
 which works with 'jquery'. It also supports both *simple* and *advanced* editor
 installations for the *raw* type.
 
-**Rails 3.1 Note:** TinyMCE doesn't play well with the asset pipeline, so it is installed
+**Rails 3.1, 3.2 and 4.0 Note:** TinyMCE doesn't play well with the asset pipeline, so it is installed
 in public. This has to do with the way TinyMCE is architected: it is plugin based
 and scatters javascript, css, and html all through it's plugin directory. It manages it's
 own loading.
 
-Also, **Rails 3.1** defaults to jQuery for javascript, so `use_tinymce` does not support
+Also, since **3.1** Rails defaults to jQuery for javascript, so `use_tinymce` does not support
 installing the *raw* version of TinyMCE.
 
 ## Selectively adding TinyMCE to selected text areas
@@ -84,9 +83,9 @@ If you don't need much and aren't familiar with *TinyMCE*, then `rake use_tinymc
 should be fine. The *advanced* version configures *TinyMCE* with many more features. Go to
 the ["TinyMCE website for details"](http://tinymce.moxiecode.com/)
 
-Rails 3.1
+Rails 3.1, 3.2 and 4.0
 
-* rake use_tinymce:install - installs the jQuery version of TinyMCE
+* `rake use_tinymce:install` - installs the jQuery version of TinyMCE
 * `rake use_tinymce:uninstall` - removes all trace of TinyMCE & the initialization file from
 your `/public/javascripts` directory.  **WARNING:** this wipes out any customizations you have
 done to the `init_tinymce.js` file. **WARNING:** `uninstall` is *always* run prior to
@@ -129,13 +128,15 @@ by a previous call to `use_tinymce` [or if you included `use_tinymce :all` in yo
 ## Rake Tasks:
 
 **NOTE** `assets` here refers to the `assets` directory in the `use_tinymce`
-gem - **not** the Rails 3.1 asset pipeline directory.
+gem - **not** the Rails 3.1, 3.2 and 4.0 asset pipeline directory.
 
 This initialization scripts were copied literally from the TinyMCE website
 ["For Dummies" page](http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22) 
 - that is: *http://tinymce.moxiecode.com/wiki.php/%22For_Dummies%22*
 
 ### Rails 3.0
+
+**NOTE** Rails 3.0 support is no longer maintained by me. I will accept patches, but will not test them.
 
 Prototype Versions:
 
@@ -163,9 +164,11 @@ directory from your applications `public/javascripts`
 `rake use_tinymce::install_*` to insure you get a clean installation. This will also
 *clean* out any customization you have done.
 
-### Rails 3.1
+### Rails 3.1, 3.2 and 4.0
 
-`use_tinymce` only supports installing the jQuery version of TinyMCE on Rails 3.1.
+**NOTE** I no longer support this gem for Rails 3.1 and 3.2. I will accept patches, but will not test them.
+
+`use_tinymce` only supports installing the jQuery version of TinyMCE on Rails 3.1, 3.2 and 4.0.
 
 There are two Rake tasks:
 
@@ -191,9 +194,12 @@ So, if you want to do it, have a blast - but please don't send me the patches.
 
 ## Upgrading *TinyMCE*
 
-`use_tinymce` ships with version 3.4.2 of *TinyMCE* - which I downloaded from the Moxiecode
+`use_tinymce` ships with two versions of *TinyMCE* which I downloaded from the Moxiecode
 website. You *should* be able to upgrade your *TinyMCE* if you want by doing the exact
 same thing and then unpacking the zip file in `/public/javascript`
+
+   version 3.4.2 of *TinyMCE* - used for Rails 3.0, 3.1 and 3.2 (it was working, so why change?)
+   version 4.0.2 for Rails 4.0.0 - I decided to add this when adding support for Rails 4.0
 
 **WARNING:** Rails 3.1 uses sprockets which has a problem compiling non-Unicoded characters.
 the advanced *TinyMCE* contains some directly encoded characters in the *spellchecker_word_separator_chars*

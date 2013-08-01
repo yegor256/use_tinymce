@@ -123,8 +123,13 @@ namespace :use_tinymce do
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install => :uninstall do
       raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
+      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery_4_0_2', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery_4_0_2.js')
+    end
+    # desc "Remove tinymce jquery plugin and re-install it - WARNING: Destroys your customizations"
+    # task :reinstall => :uninstall do |tsk|
+    #   Rake::Task[]
+    #   require 'pry'; pry binding
     end
   else
     puts "use_tinymce error: Don't know how to install in Rails #{Rails.version}"

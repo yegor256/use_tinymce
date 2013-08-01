@@ -1,6 +1,6 @@
 module UseTinymce
   class Engine < Rails::Engine
-    if Rails.version =~ /^3.[012]/
+    if Rails.version =~ /^3.[012]/ || Rails.version =~ /^4.[0]/
       initializer "active_support.add_use_tinymce" do
         ::ActiveSupport.on_load(:action_controller) do
           include UseTinymce::Base
