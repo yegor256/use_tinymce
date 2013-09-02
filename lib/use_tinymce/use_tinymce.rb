@@ -32,16 +32,13 @@ module UseTinymce
             [['jscripts', 'tiny_mce', 'tiny_mce'], ['jscripts', 'tiny_mce', 'jquery.tinymce.js'], ['js', 'tinymce', 'jquery.tinymce.min.js']].each do |ar|
               path_ar = [Rails.root, 'public', 'javascripts', 'tinymce'] + ar
               if File.exists?( File.join(path_ar))
-                ret = javascript_include_tag('/javascripts/tinymce/' + ar.join('/'), '/javascripts/use_tinymce_init')
+                ret = ''
+                # ret += javascript_tag("$(document).ready(function() {alert('ready one');});")
+                ret += javascript_include_tag('/javascripts/use_tinymce_init')
+                ret += javascript_include_tag('/javascripts/tinymce/' + ar.join('/'))
+                # ret += javascript_tag("$(document).ready(function() {alert('ready two');});")
               end
             end
-            # jq_path = File.join(Rails.root, 'public', 'javascripts', 'tinymce', 'jscripts', 'tiny_mce', 'jquery.tinymce.js')
-            # if File.exists? jq_path
-            #   javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/jquery.tinymce.js', '/javascripts/use_tinymce_init' )
-            # else
-            #   javascript_include_tag( '/javascripts/tinymce/jscripts/tiny_mce/tiny_mce', '/javascripts/use_tinymce_init' )
-            # end
-            puts ret
             ret
           end
         end

@@ -27,4 +27,5 @@ $().ready(function() {
 	        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
 	    ]
 	});
+	alert('tinymce initiator');
 });
