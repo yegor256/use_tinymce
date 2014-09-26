@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/use_tinymce.svg)](http://badge.fury.io/rb/use_tinymce)
 
-UseTinyMCE - 0.0.16.pre1
+UseTinyMCE
 ==========
 
 **UseTinyMCE** is yet another (as if we needed another) hack for including
