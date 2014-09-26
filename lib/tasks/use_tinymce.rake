@@ -130,7 +130,7 @@ namespace :use_tinymce do
     # task :reinstall => :uninstall do |tsk|
     #   Rake::Task[]
     #   require 'pry'; pry binding
-    end
+    # end
   else
     puts "use_tinymce error: Don't know how to install in Rails #{Rails.version}"
     exit 1
