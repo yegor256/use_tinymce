@@ -1,0 +1,11 @@
+assets:
+  rubygems.yml: "yegor256/home#assets/rubygems.yml"
+
+release:
+  script: |
+    rake
+    rm -rf *.gem
+    sed -i "s/1\\.0\\.snapshot/${tag}/g" lib/use_tinymce/version.rb
+    gem build use_tinymce.gemspec
+    chmod 0600 ../rubygems.yml
+    gem push *.gem --config-file ../rubygems.yml

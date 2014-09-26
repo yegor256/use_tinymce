@@ -1,1 +1,1 @@
-VERSION = '0.0.16.pre1'
+VERSION = '1.0.snapshot'
