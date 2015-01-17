@@ -1,17 +1,16 @@
 require 'fileutils'
-
 # make sure we are in the right versino of Rails
 unless defined?(Rails)
   puts "This rake task only runs on Rails"
   exit
 end
-unless Rails.version =~ /^3.[012]/ || Rails.version =~ /^4.[0]/
+unless Rails.version =~ UseTinymce::RAILS_3_VERSIONS || Rails.version =~ UseTinymce::RAILS_4_VERSIONS
   puts "use_tinymce Error: Don't know how to install on Rails Version #{Rails.version}"
 
   exit
 end
 
-module UseTinyMCE
+module UseTinymce
   module RakeSupport
     # gem paths - used to source for installation
     USE_TINYMCE_ROOT = File.expand_path('../../../', __FILE__)
@@ -78,53 +77,53 @@ end
 namespace :use_tinymce do
   desc "uninstall use_tinymce javascript code"
   task :uninstall do
-    init_file_path = File.join(UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT, 'use_tinymce_init.js')
+    init_file_path = File.join(UseTinymce::RakeSupport::JAVASCRIPT_ROOT, 'use_tinymce_init.js')
     File.delete(init_file_path) if File.exists? init_file_path
     
-    tinymce_root_path = File.join(UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT, 'tinymce')
-    UseTinyMCE::RakeSupport::rmdir_tree(tinymce_root_path) if File.exists? tinymce_root_path
+    tinymce_root_path = File.join(UseTinymce::RakeSupport::JAVASCRIPT_ROOT, 'tinymce')
+    UseTinymce::RakeSupport::rmdir_tree(tinymce_root_path) if File.exists? tinymce_root_path
   end
 
   case Rails.version
   when /^3.0/
     # common task - this undescribed task installs the non-jquery version of TinyMCE, but not the initialization script
     task :install_tinymce_advanced => :uninstall do
-      raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+      raise Exception.new("Cannot install: #{UseTinymce::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinymce::RakeSupport.mkdir_tree UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      FileUtils.cp_r File.join(UseTinymce::RakeSupport::ASSETS_ROOT, 'tinymce_no_jquery', 'tinymce'), UseTinymce::RakeSupport::JAVASCRIPT_ROOT
     end
     # common task - this undescribed task installs the jquery version of TinyMCE, but not the initialization script
     task :install_tinymce_jquery => :uninstall do
-      raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
+      raise Exception.new("Cannot install: #{UseTinymce::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinymce::RakeSupport.mkdir_tree UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      FileUtils.cp_r File.join(UseTinymce::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinymce::RakeSupport::JAVASCRIPT_ROOT
     end
 
     desc "Install tinymce with 'simple' initialization"
     task :install_simple => :install_tinymce_advanced do
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_simple.js')
+      UseTinymce::RakeSupport::copy_init_script('use_tinymce_init_simple.js')
     end
 
     desc "Install tinymce with 'advanced' initialization"
     task :install_advanced => :install_tinymce_advanced do
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_advanced.js')
+      UseTinymce::RakeSupport::copy_init_script('use_tinymce_init_advanced.js')
     end
 
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install_jquery => :install_tinymce_jquery do
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
+      UseTinymce::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
     end
   when /^3\.[12]/
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install => :uninstall do
-      raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
+      raise Exception.new("Cannot install: #{UseTinymce::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinymce::RakeSupport.mkdir_tree UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      FileUtils.cp_r File.join(UseTinymce::RakeSupport::ASSETS_ROOT, 'tinymce_jquery', 'tinymce'), UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      UseTinymce::RakeSupport::copy_init_script('use_tinymce_init_jquery.js')
     end
-  when /^4\.[0]/
+  when UseTinymce::RAILS_4_VERSIONS
     desc "Install tinymce jquery plugin with 'advanced' initialization"
     task :install => :uninstall do
-      raise Exception.new("Cannot install: #{UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinyMCE::RakeSupport.mkdir_tree UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      FileUtils.cp_r File.join(UseTinyMCE::RakeSupport::ASSETS_ROOT, 'tinymce_jquery_4_0_2', 'tinymce'), UseTinyMCE::RakeSupport::JAVASCRIPT_ROOT
-      UseTinyMCE::RakeSupport::copy_init_script('use_tinymce_init_jquery_4_0_2.js')
+      raise Exception.new("Cannot install: #{UseTinymce::RakeSupport::JAVASCRIPT_ROOT} does not exist") unless UseTinymce::RakeSupport.mkdir_tree UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      FileUtils.cp_r File.join(UseTinymce::RakeSupport::ASSETS_ROOT, 'tinymce_jquery_4_0_2', 'tinymce'), UseTinymce::RakeSupport::JAVASCRIPT_ROOT
+      UseTinymce::RakeSupport::copy_init_script('use_tinymce_init_jquery_4_0_2.js')
     end
     # desc "Remove tinymce jquery plugin and re-install it - WARNING: Destroys your customizations"
     # task :reinstall => :uninstall do |tsk|

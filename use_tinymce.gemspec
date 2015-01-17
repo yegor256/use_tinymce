@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{lib,test}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"] \
     + ["assets/use_tinymce_init_simple.js", "assets/use_tinymce_init_advanced.js", "assets/use_tinymce_init_jquery.js"] \
     + Dir['assets/tinymce*/**/*']
-  s.version = VERSION
+  s.version = UseTinymce::VERSION
 end
