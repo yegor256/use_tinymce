@@ -25,7 +25,7 @@ module UseTinymce
   
   if defined? Rails
     module Link
-      if Rails.version =~ /^3.[012]/ || Rails.version =~ /^4.[0]/
+      if Rails.version =~ RAILS_3_VERSIONS || Rails.version =~ RAILS_4_VERSIONS
         def use_tinymce_link
           if defined?(params) && use_tinymce?(params[:action])
             ret = ''

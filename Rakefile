@@ -19,7 +19,7 @@ end
 
 desc "create README.markdown from README.markdown.in by replacing @@FOO@@ with FOO Value"
 file "README.markdown" => ["README.markdown.in"] do
-  system "sed -e 's/@@VERSION@@/#{VERSION}/g' <'README.markdown.in' >'README.markdown'"
+  system "sed -e 's/@@VERSION@@/#{UseTinymce::VERSION}/g' <'README.markdown.in' >'README.markdown'"
 end
 
 desc "build gem"
@@ -33,7 +33,7 @@ end
 
 desc "push to rubygems"
 task :gem_push => [:gem] do
-  unless VERSION =~ /pre/ then
+  unless UseTinymce::VERSION =~ /pre/ then
     system "gem push #{gem_name}-#{gem_version}.gem"
   else
     puts "Cannot push a pre version - test it you fool!!!!"
